@@ -73,7 +73,7 @@ func (a *App) prepareFishCommands(commands []Command, allCommands *[]string, pre
 			continue
 		}
 
-		var completion strings.Builder
+		var completion bytes.Buffer
 		completion.WriteString(fmt.Sprintf(
 			"complete -r -c %s -n '%s' -a '%s'",
 			a.Name,
@@ -122,7 +122,7 @@ func (a *App) prepareFishFlags(flags []Flag, previousCommands []string) []string
 			continue
 		}
 
-		completion := &strings.Builder{}
+		completion := &bytes.Buffer{}
 		completion.WriteString(fmt.Sprintf(
 			"complete -c %s -n '%s'",
 			a.Name,
@@ -159,7 +159,7 @@ func (a *App) prepareFishFlags(flags []Flag, previousCommands []string) []string
 	return completions
 }
 
-func fishAddFileFlag(flag Flag, completion *strings.Builder) {
+func fishAddFileFlag(flag Flag, completion *bytes.Buffer) {
 	switch f := flag.(type) {
 	case GenericFlag:
 		if f.TakesFile {
